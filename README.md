@@ -1,24 +1,44 @@
 # Windows Setup
 
+## Download
+
+with git installed:
+
+```powershell
+Set-Location "${env:SYSTEMDRIVE}\"
+git clone https://github.com/MyNameIs-13/windows-setup
+```
+
+without git installed:
+
+```powershell
+Invoke-WebRequest -Uri "https://github.com/MyNameIs-13/windows-setup/archive/main.zip" -OutFile "${env:USERPROFILE}\windows-setup.zip"
+Expand-Archive -Path "${env:USERPROFILE}\windows-setup.zip" -DestinationPath "${env:SYSTEMDRIVE}\"
+Rename-Item -Path "${env:SYSTEMDRIVE}\windows-setup-main" -NewName "windows-setup"
+Remove-Item -Path "${env:USERPROFILE}\windows-setup.zip"
+```
+
 ## Install programs
 
-Open an elevated powershell
-navigate to the `windows_setup` directory and run:
+Open an elevated powershell and run:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-./install.ps1
+. "${env:USERPROFILE}\windows-setup\install.ps1"
 ```
+
+reboot/shutdown
 
 ## Apply Configuration
 
-Open powershell
-navigate to the `windows_setup` directory and run:
+Open powershell and run:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-./config.ps1
+. "${env:USERPROFILE}\windows-setup\config.ps1"
 ```
+
+reboot/shutdown
 
 ## Manual Configuration Steps
 
