@@ -5,23 +5,6 @@
 ; ^ = Ctrl
 ; + = Shift
 
-
-;#SETUP START
-#NoTrayIcon
-#SingleInstance force
-ListLines 0
-SendMode "Input"
-SetWorkingDir A_ScriptDir
-KeyHistory 0
-#WinActivateForce
-
-ProcessSetPriority "H"
-
-SetWinDelay -1
-SetControlDelay -1
-
-;#SETUP END
-
 >!a::ä
 >!+a::Ä
 

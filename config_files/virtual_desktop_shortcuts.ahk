@@ -6,27 +6,11 @@
 ; ^ = Ctrl
 ; + = Shift
 
-
-;#SETUP START
-#SingleInstance force
-ListLines 0
-SendMode "Input"
-SetWorkingDir A_ScriptDir
-KeyHistory 0
-#WinActivateForce
-
-ProcessSetPriority "H"
-
-SetWinDelay -1
-SetControlDelay -1
-
 ; assign initial value for CurrentDesktopNr (0 doesn't exist, to guarantee a change)
 CurrentDesktopNr := 0
 
 ; automatically change the tray icon based on a timer
 SetTimer(Change_TRAY_Icon, 1000)
-
-;#SETUP END
 
 ;create until we have at least 2 VD
 VD.createUntil(2)
@@ -45,7 +29,7 @@ Change_TRAY_Icon()
 	global CurrentDesktopNr
     Nr := VD.getCurrentDesktopNum()
     if (CurrentDesktopNr != Nr) {
-        TraySetIcon(A_MyDocuments "\virtual_desktop_icons\" Nr "_dark.ico")
+        TraySetIcon(A_MyDocuments "\AutoHotKey\virtual_desktop_icons\" Nr "_dark.ico")
         CurrentDesktopNr := Nr
     }
 }

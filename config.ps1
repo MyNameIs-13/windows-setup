@@ -2,11 +2,15 @@
 if (-not (Test-Path "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup")) {
     New-Item -Path "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup" -Type Directory -Force -ErrorAction SilentlyContinue | Out-Null
 }
-Copy-Item "$PSScriptRoot\config_files\*.ahk" -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"
+Copy-Item "$PSScriptRoot\config_files\start_ahk_scripts.ahk" -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"
 
 # copy icons
 $MyDocuments = [environment]::GetFolderPath('MyDocuments')
-Copy-Item "$PSScriptRoot\config_files\virtual_desktop_icons" -Destination $MyDocuments -Recurse
+if (-not (Test-Path "$MyDocuments\AutoHotKey")) {
+    New-Item -Path "$MyDocuments\AutoHotKey" -Type Directory -Force -ErrorAction SilentlyContinue | Out-Null
+}
+Copy-Item "$PSScriptRoot\config_files\virtual_desktop_icons" -Destination "$MyDocuments\AutoHotKey" -Recurse
+Copy-Item "$PSScriptRoot\config_files\*.ahk" -Destination "$MyDocuments\AutoHotKey\"
 
 # move initial greenshot settings
 if (-not (Test-Path "$env:APPDATA\Greenshot")) {
