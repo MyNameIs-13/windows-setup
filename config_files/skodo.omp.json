@@ -1,0 +1,905 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "black": "#111111",
+    "pop_dark_gray": "#564E4A",
+    "pop_dark_grey": "#564E4A",
+    "pop_orange": "#FA9C05",
+    "pop_turqouise": "#308F9C",
+    "pop_white": "#FBF1C7",
+    "red": "#FF0000",
+    "white": "#FFFFFF"
+  },
+  "console_title_template": "{{ .UserName }}@{{ .HostName }} in {{ .Folder }}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": false,
+            "cache_duration": "none"
+          },
+          "template": " <p:red>\uf00d</> {{ reason .Code }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "status",
+          "style": "plain"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": false,
+            "cache_duration": "none",
+            "style": "austin",
+            "threshold": 500
+          },
+          "template": "\ueba2 {{ .FormattedMs }} · ",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "executiontime",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "time_format": "02 Jan 06 15:04 MST"
+          },
+          "leading_diamond": "\ue0c7",
+          "trailing_diamond": "\ue0c6",
+          "template": "{{ .CurrentDate | date .Format }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "time",
+          "style": "diamond"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "transparent new line",
+          "foreground": "transparent",
+          "background": "transparent",
+          "type": "text",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u250c",
+          "foreground": "p:pop_dark_gray",
+          "background": "transparent",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "hide_root_location": false,
+            "max_depth": 6,
+            "style": "agnoster_short"
+          },
+          "trailing_diamond": "\ue0c6",
+          "template": " {{ if .Writable }}{{ .Path }}{{ else }}<p:red>{{ .Path }}</>{{ end }} ",
+          "foreground": "p:pop_white",
+          "background": "p:pop_dark_gray",
+          "type": "path",
+          "style": "diamond"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "source": "cli"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "{{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf0c7  {{ .StashCount }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "git",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_status": false
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue0a0{{.Branch}} r{{.BaseRev}} {{.Working.String}}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "svn",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue7ad {{.Profile}}{{if .Region}}@{{.Region}}{{end}}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "aws",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uebd8 {{ .DefaultEnvironment }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "azd",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "{{ if .Error }}{{ .Error }}{{ else }}\uf0e7 {{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "azfunc",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue311 cds {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "cds",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf40a cf {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "cf",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf40a {{if .Org }}{{ .Org }}{{ end }}{{ if .Space }}/{{ .Space }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "cftarget",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue7b2 {{ if .Error }}{{ .Error }}{{ else }}{{ .Project }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "gcp",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "{{ .Stack }}{{if .User }} :: {{ .User }}@{{ end }}{{ if .URL }}{{ .URL }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "pulumi",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "Env: {{ .EndpointName }}{{ if .CmHost }} CM: {{ .CmHost }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "sitecore",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue753 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "angular",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "{{ .Name }}:{{ .User }}@{{ .Server }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "argocd",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "{{ if .Error }}{{ .Icon }} {{ .Error }}{{ else }}{{ url .Icon .URL }} {{ .Full }}{{ end }",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "bazel",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "🐃 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "buf",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "🥟 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "bun",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue61e \ue61d cmake {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "cmake",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue628 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "deno",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf308 {{ .Context }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "docker",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb82\udd67 {{ .Project }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "firebase",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue28e  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "flutter",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf1d2 {{ .MajorMinorPatch }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "gitversion",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "Helm {{ .Version }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "helm",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ufd31 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "kubectl",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "Maven {{ .Full }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "mvn",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf1d2 {{ .Version }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "nbgv",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "via {{ .Type }}-shell",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "nix-shell",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue71e {{ .Full }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "npm",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue753 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "nx",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb80\udec1 {{ .Full }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "pnpm",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uea6a {{.Full}}{{ if .HasVite }} \ueb29 {{ .Vite.Version }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "quasar",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue7ba {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "react",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb84\udcfe {{ .Context }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "talosctl",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb84\udc62 {{ .WorkspaceName }}{{ if .Version }} {{ .Version }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "terraform",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\uf0ad ui5 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "ui5tooling",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb81\udd49 {{ .Version }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "umbraco",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "http_timeout": 2000
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue721 {{ .UnityVersion }}{{ if .CSharpVersion }} {{ .CSharpVersion }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "unity",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "xmake {{ if .Error }}{{ .Error }}{{ else }}v{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "xmake",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\udb80\udd1b {{ .Full }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "yarn",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue370 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "crystal",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue798 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "dart",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "dotnet",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue62d {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "elixir",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\u202d\ufcd1 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "go",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\u202d\ue61f {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "haskell",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\u202d\ue738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "java",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\u202d\ue624 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "julia",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\u202d<b>K</b> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "kotlin",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue620 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "lua",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "node",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue67a {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "ocaml",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue769 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "perl",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue73d {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "php",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "python",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "R {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "r",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue791 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "ruby",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "rust",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue755 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "swift",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "<p:pop_white,transparent> [ </>",
+          "trailing_diamond": "<p:pop_white,transparent> ]</>",
+          "template": "\ue69e {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "vala",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2514",
+          "foreground": "p:pop_turqouise",
+          "background": "transparent",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "debian": "\uf32a",
+            "linux": "\udb80\udf3d",
+            "pop": "\uf32a",
+            "ubuntu": "\udb81\udd48",
+            "windows": "\udb80\udf72"
+          },
+          "trailing_diamond": "\ue0c6",
+          "template": "  {{ if .WSL }}WSL at {{ end }}{{.Icon}}  ",
+          "foreground": "p:pop_white",
+          "background": "p:pop_turqouise",
+          "type": "os",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "\ue0c7",
+          "trailing_diamond": "\ue0c6",
+          "foreground": "p:pop_dark_gray",
+          "background": "p:pop_white",
+          "type": "shell",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "\ue0c7",
+          "trailing_diamond": "\ue0c6",
+          "template": " {{ if .SSHSession }}\ueba9 {{ end }}{{ if .Root }}<p:red>{{ .UserName }}</>{{ else }}{{ .UserName }}{{ end }}@{{ .HostName }} ",
+          "foreground": "p:black",
+          "background": "p:pop_orange",
+          "type": "session",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "always_enabled": true,
+            "cache_duration": "none"
+          },
+          "template": " {{ if .Root }}#{{ else }}❯{{ end }}",
+          "foreground": "p:pop_white",
+          "background": "transparent",
+          "type": "text",
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if .Root }}p:red{{ end }}"
+          ]
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}

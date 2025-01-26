@@ -13,7 +13,6 @@ SetControlDelay -1
 
 ;#SETUP END
 
-#Include "%A_MyDocuments%"\AutoHotKey\keyboard_layout.ahk"
-#Include "%A_MyDocuments%"\AutoHotKey\keyboard_shortcuts.ahk"
-#Include "%A_MyDocuments%"\AutoHotKey\virtual_desktop_shortcuts.ahk"
-k
+#Include "%A_MyDocuments%\AutoHotKey\keyboard_layout.ahk"
+#Include "%A_MyDocuments%\AutoHotKey\keyboard_shortcuts.ahk"
+#Include "%A_MyDocuments%\AutoHotKey\virtual_desktop_shortcuts.ahk"

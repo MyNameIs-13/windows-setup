@@ -1,0 +1,82 @@
+{
+  "custom-layouts": [
+    {
+      "uuid": "{22187C79-337D-4750-96E5-383F9072CCF2}",
+      "name": "More",
+      "type": "grid",
+      "info": {
+        "rows": 4,
+        "columns": 3,
+        "rows-percentage": [
+          2514,
+          2493,
+          2486,
+          2507
+        ],
+        "columns-percentage": [
+          2648,
+          4704,
+          2648
+        ],
+        "cell-child-map": [
+          [
+            0,
+            4,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ],
+          [
+            3,
+            5,
+            9
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": 5,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "uuid": "{54DD1E1D-D122-45ED-AC7C-75C56CB48FF6}",
+      "name": "Main",
+      "type": "grid",
+      "info": {
+        "rows": 2,
+        "columns": 3,
+        "rows-percentage": [
+          5000,
+          5000
+        ],
+        "columns-percentage": [
+          2645,
+          4707,
+          2648
+        ],
+        "cell-child-map": [
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            4
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": 5,
+        "sensitivity-radius": 20
+      }
+    }
+  ]
+}

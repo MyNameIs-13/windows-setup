@@ -20,7 +20,7 @@ Remove-Item -Path "${env:USERPROFILE}\windows-setup.zip"
 
 ## Install programs
 
-Open an elevated powershell and run:
+Open an powershell and run:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
@@ -42,9 +42,10 @@ reboot/shutdown
 
 ## Manual Configuration Steps
 
-Set Start Menu pins
-Set Taskbar pins
-Desktop Icons
+- Set Start Menu pins
+- Set Taskbar pins
+- disable Desktop Icons
+- install https://keepassxc.org/ portable
 
 - Settings
   - System
@@ -63,6 +64,7 @@ Desktop Icons
   - Apps
     - Startup
       - Microsoft Edge : disable
+	  - Check others to be disabled
   - Time & language
     - <Language> ...: (click on the dots)
       - Add a keyboard

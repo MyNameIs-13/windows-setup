@@ -52,6 +52,13 @@ SwitchToWindowsTerminal() {
 ; Hotkey to launch/restore the Windows Terminal.
 #t::SwitchToWindowsTerminal()
 
+
+; Hotkey to launch lx launcher
+!Space::
+{
+	Run A_WinDir "\system32\mstsc.exe `"C:\Users\gsk\AppData\Roaming\Microsoft\Workspaces\{14CCECE5-2EC4-4F13-805F-728D2579B172}\Resource\LX Launcher (LS RemoteApp).rdp`""
+}
+
 ; Close Window		Super + Q | Alt + F4
 #q::!F4
 
@@ -77,8 +84,8 @@ SwitchToWindowsTerminal() {
 ^#+Right::Send "{Win Shift right}"
 
 ; set mouse thumb keys
-XButton1::PgDn
-XButton2::PgUp
+;XButton1::PgDn
+;XButton2::PgUp
 
 ; disable Capslock
 SetCapsLockState "AlwaysOff"

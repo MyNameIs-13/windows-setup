@@ -24,6 +24,8 @@ VD.createUntil(2)
 ; move window to right and follow it
 ^#+down::VD.goToDesktopNum(VD.MoveWindowToRelativeDesktopNum("A", 1))
 
+^#p::VD.TogglePinWindow("A")
+
 Change_TRAY_Icon()
 {
 	global CurrentDesktopNr
